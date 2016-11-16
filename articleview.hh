@@ -153,6 +153,9 @@ public:
   /// Returns current article's text in .html format
   QString toHtml();
 
+  /// Returns current article's text in .txt format
+  QString toPlainText();
+
   /// Returns current article's title
   QString getTitle();
 

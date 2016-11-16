@@ -1987,6 +1987,26 @@ QString getHistoryFileName() throw( exError )
   return getHomeDir().filePath( "history" );
 }
 
+QString getWbookFileName() throw( exError )
+{
+    return getHomeDir().filePath("wordbook");
+}
+
+QString getWBHomeDir(){
+    return getHomeDir().absolutePath();
+}
+
+QString getWbookSetName(QString name) throw( exError )
+{
+    QDir result = getHomeDir();
+
+    result.mkpath( "wbook" );
+    if ( !result.cd( "wbook" ) )
+      throw exCantUseIndexDir();
+
+    return result.path() + QDir::separator() + name;
+}
+
 QString getUserCssFileName() throw( exError )
 {
   return getHomeDir().filePath( "article-style.css" );

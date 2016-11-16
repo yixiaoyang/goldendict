@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>653</width>
-    <height>538</height>
+    <width>1170</width>
+    <height>752</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string notr="true">GoldenDict</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
+   <layout class="QVBoxLayout" name="verticalLayout_centralWidget">
     <property name="leftMargin">
      <number>1</number>
     </property>
@@ -62,6 +62,274 @@
       </widget>
      </widget>
     </item>
+    <item>
+     <widget class="QFrame" name="frame_wordbook">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#comboBox_wordbook{
+	padding-left:4px;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>6</number>
+       </property>
+       <property name="leftMargin">
+        <number>1</number>
+       </property>
+       <property name="topMargin">
+        <number>1</number>
+       </property>
+       <property name="rightMargin">
+        <number>1</number>
+       </property>
+       <property name="bottomMargin">
+        <number>1</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="label_wbTitle">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>28</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Words Book</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBox_wordbook">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>28</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_wbCount">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_wbStar" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>26</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>26</height>
+          </size>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_wbStar">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>1</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>1</number>
+          </property>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>311</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_wbStar0">
+            <property name="minimumSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/icons/closetab.png</normaloff>:/icons/closetab.png</iconset>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_wbStar1">
+            <property name="minimumSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_wbStar2">
+            <property name="minimumSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_wbStar3">
+            <property name="minimumSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_wbStar4">
+            <property name="minimumSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_wbStar5">
+            <property name="minimumSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>16</width>
+              <height>16</height>
+             </size>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -69,8 +337,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>653</width>
-     <height>18</height>
+     <width>1170</width>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -99,7 +367,7 @@
    </widget>
    <widget class="QMenu" name="menu_Help">
     <property name="title">
-     <string>&amp;Help</string>
+     <string>He&amp;lp</string>
     </property>
     <addaction name="showReference"/>
     <addaction name="separator"/>
@@ -123,7 +391,7 @@
    </widget>
    <widget class="QMenu" name="menuHistory">
     <property name="title">
-     <string>H&amp;istory</string>
+     <string>Histor&amp;y</string>
     </property>
     <addaction name="showHideHistory"/>
     <addaction name="exportHistory"/>
@@ -138,16 +406,25 @@
     <addaction name="searchInPageAction"/>
     <addaction name="fullTextSearchAction"/>
    </widget>
+   <widget class="QMenu" name="menuWBook">
+    <property name="title">
+     <string>WBoo&amp;k</string>
+    </property>
+    <addaction name="actionAppendToWBook"/>
+    <addaction name="actionAdd_removeFromWBook"/>
+    <addaction name="actionOpenWordBook"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
    <addaction name="menu_Edit"/>
    <addaction name="menuSearch"/>
    <addaction name="menuHistory"/>
+   <addaction name="menuWBook"/>
    <addaction name="menu_Help"/>
   </widget>
   <widget class="QDockWidget" name="searchPane">
    <property name="windowTitle">
-    <string>&amp;Search Pane</string>
+    <string>Search Pa&amp;ne</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>1</number>
@@ -329,6 +606,7 @@
     </layout>
    </widget>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <action name="dictionaries">
    <property name="icon">
     <iconset resource="resources.qrc">
@@ -563,7 +841,7 @@
   </action>
   <action name="searchInPageAction">
    <property name="text">
-    <string>Search in page</string>
+    <string>&amp;Search in page</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+F</string>
@@ -574,7 +852,7 @@
   </action>
   <action name="fullTextSearchAction">
    <property name="text">
-    <string>Full-text search</string>
+    <string>&amp;Full-text search</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+F</string>
@@ -588,10 +866,43 @@
   </action>
   <action name="showReference">
    <property name="text">
-    <string>GoldenDict reference</string>
+    <string>&amp;GoldenDict reference</string>
    </property>
    <property name="shortcut">
     <string>F1</string>
+   </property>
+  </action>
+  <action name="actionAppendToWBook">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/addtab.png</normaloff>:/icons/addtab.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Append</string>
+   </property>
+   <property name="shortcut">
+    <string>F8</string>
+   </property>
+  </action>
+  <action name="actionAdd_removeFromWBook">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/closetab.png</normaloff>:/icons/closetab.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Remove</string>
+   </property>
+   <property name="shortcut">
+    <string>F7</string>
+   </property>
+  </action>
+  <action name="actionOpenWordBook">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icon32_aard.png</normaloff>:/icons/icon32_aard.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Open Word Book</string>
    </property>
   </action>
  </widget>

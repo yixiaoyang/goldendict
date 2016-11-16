@@ -34,6 +34,8 @@
 #include <QRunnable>
 #include <QThreadPool>
 #include <QSslConfiguration>
+#include <QStatusBar>
+#include <QPushButton>
 
 #include <limits.h>
 #include <set>
@@ -46,6 +48,7 @@
 #include "qt4x5.hh"
 #include <QDesktopWidget>
 #include "ui_authentication.h"
+#include "WordBook/WBookDialog.h"
 
 #ifdef Q_OS_MAC
 #include "lionsupport.h"
@@ -111,6 +114,7 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
   addTab( this ),
   cfg( cfg_ ),
   history( History::Load(), cfg_.preferences.maxStringsInHistory, cfg_.maxHeadwordSize ),
+  wbook(),
   dictionaryBar( this, configEvents, cfg.editDictionaryCommandLine, cfg.preferences.maxDictionaryRefsInContextMenu ),
   articleMaker( dictionaries, groupInstances, cfg.preferences.displayStyle,
                 cfg.preferences.addonStyle ),
@@ -548,6 +552,9 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
 
   connect( ui.menuHistory, SIGNAL( aboutToShow() ),
            this, SLOT( updateHistoryMenu() ) );
+
+  // Words book
+  wb_load();
 
   // Show tray icon early so the user would be happy. It won't be functional
   // though until the program inits fully.
@@ -2590,6 +2597,9 @@ void MainWindow::showTranslationFor( QString const & inWord,
 
   updateBackForwardButtons();
 
+  // update words book
+  wb_show( inWord );
+
   #if 0
   QUrl req;
 
@@ -2698,6 +2708,9 @@ void MainWindow::showTranslationFor( QString const & inWord,
   addWordToHistory( inWord );
 
   updateBackForwardButtons();
+
+  // update words book
+  wb_show( inWord );
 }
 
 #ifdef HAVE_X11
@@ -4210,7 +4223,7 @@ void MainWindow::showFTSIndexingName( QString const & name )
   if( name.isEmpty() )
     mainStatusBar->setBackgroundMessage( QString() );
   else
-    mainStatusBar->setBackgroundMessage( tr( "Now indexing for full-text search: " ) + name );
+      mainStatusBar->setBackgroundMessage( tr( "Now indexing for full-text search: " ) + name );
 }
 
 #ifdef Q_OS_WIN32
@@ -4246,3 +4259,142 @@ bool MainWindow::isGoldenDictWindow( HWND hwnd )
 }
 
 #endif
+
+void MainWindow::on_actionAppendToWBook_triggered()
+{
+    wb_starAndAddWord(WBOOK_START1);
+}
+
+void MainWindow::on_pushButton_wbStar1_clicked()
+{
+    wb_starAndAddWord(WBOOK_START1);
+}
+
+void MainWindow::on_pushButton_wbStar2_clicked()
+{
+    wb_starAndAddWord(WBOOK_START2);
+}
+
+void MainWindow::on_pushButton_wbStar3_clicked()
+{
+    wb_starAndAddWord(WBOOK_START3);
+}
+
+void MainWindow::on_pushButton_wbStar4_clicked()
+{
+    wb_starAndAddWord(WBOOK_START4);
+}
+
+void MainWindow::on_pushButton_wbStar5_clicked()
+{
+    wb_starAndAddWord(WBOOK_START5);
+}
+
+void MainWindow::on_pushButton_wbStar0_clicked()
+{
+    on_actionAdd_removeFromWBook_triggered();
+}
+
+void MainWindow::slot_wbWordlist_changeed()
+{
+    ui.comboBox_wordbook->clear();
+    ui.comboBox_wordbook->addItems(wbook.getBookNameList());
+}
+
+void MainWindow::slot_wbScanpopup_show(QString word)
+{
+    //toggleMainWindow( true );
+    translateLine->setText(  word );
+    translateInputFinished(  );
+}
+
+void MainWindow::wb_starAndAddWord(char star)
+{
+    QString inword = wb_inWordLast;
+    if(inword.isEmpty())
+        return ;
+
+    QString wordlistName = ui.comboBox_wordbook->currentText();
+    if(!inword.isEmpty()){
+        wbook.appendToSet(inword,star,wordlistName);
+        wb_updateStar(star);
+        statusBar()->showMessage(inword + QString::fromUtf8(" has been added to word book"),3000);
+    }
+}
+
+void MainWindow::wb_updateStar(char star)
+{
+    const int size = 5;
+    QPushButton* buttons[size] = {
+        ui.pushButton_wbStar1,
+        ui.pushButton_wbStar2,
+        ui.pushButton_wbStar3,
+        ui.pushButton_wbStar4,
+        ui.pushButton_wbStar5,
+    };
+
+    wb_inWordStared = star > WBOOK_START0;
+    if(wb_inWordStared){
+        ui.pushButton_wbStar0->show();
+    }else{
+        ui.pushButton_wbStar0->hide();
+    }
+
+    for(int idx = 0; (idx < star) && (idx < size); idx++){
+        buttons[idx]->setIcon(QIcon(":/icons/star-yellow.png"));
+    }
+    for(int idx = star; idx < size; idx++){
+        buttons[idx]->setIcon(QIcon(":/icons/star-gray.png"));
+    }
+}
+
+void MainWindow::wb_load()
+{
+    wb_updateStar(WBOOK_START0);
+    ui.comboBox_wordbook->addItems(wbook.getBookNameList());
+
+    statusBar()->show();
+}
+
+void MainWindow::wb_show(QString inword)
+{
+    char star = 0;
+    QString curWordListName = ui.comboBox_wordbook->currentText();
+
+    wb_inWordLast = inword;
+    if(wbook.search_in(wb_inWordLast,curWordListName,star)){
+        wb_updateStar(star);
+    }else{
+        wb_updateStar(WBOOK_START0);
+    }
+}
+
+void MainWindow::on_actionAdd_removeFromWBook_triggered()
+{
+    QString inword = wb_inWordLast;
+    if(!inword.isEmpty()){
+        if(wbook.removeFromSet(inword,ui.comboBox_wordbook->currentText())){
+            statusBar()->showMessage(inword + QString::fromUtf8(" has been removed to word book"),3000);
+            wb_updateStar(WBOOK_START0);
+        }else{
+        }
+    }
+}
+
+void MainWindow::on_actionOpenWordBook_triggered()
+{
+    WBookDialog *wbdialog = new WBookDialog(this);
+
+    wbdialog->setWbook(&wbook);
+    wbdialog->setModal(false);
+
+    connect(wbdialog,SIGNAL(sig_wordlist_changed()),this,SLOT(slot_wbWordlist_changeed()));
+    connect(wbdialog,SIGNAL(sig_scanpopup_show(QString)),this,SLOT(slot_wbScanpopup_show(QString)));
+
+    wbdialog->show();
+}
+
+void MainWindow::on_comboBox_wordbook_currentIndexChanged(const QString &)
+{
+    wb_show(wb_inWordLast);
+}

@@ -79,5 +79,8 @@
         <file>icons/icon32_zim.png</file>
         <file>icons/icon32_epwing.png</file>
         <file>icons/icon32_slob.png</file>
+        <file>icons/star-yellow.png</file>
+        <file>icons/star-gray.png</file>
+        <file>icons/star-add.png</file>
     </qresource>
 </RCC>

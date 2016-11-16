@@ -1485,7 +1485,12 @@ void ArticleView::playSound()
 
 QString ArticleView::toHtml()
 {
-  return ui.definition->page()->mainFrame()->toHtml();
+    return ui.definition->page()->mainFrame()->toHtml();
+}
+
+QString ArticleView::toPlainText()
+{
+    return ui.definition->page()->mainFrame()->toPlainText();
 }
 
 QString ArticleView::getTitle()

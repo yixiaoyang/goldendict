@@ -37,6 +37,9 @@ QT += sql
 CONFIG += exceptions \
     rtti \
     stl
+
+CONFIG += no_epwing_support
+
 OBJECTS_DIR = build
 UI_DIR = build
 MOC_DIR = build
@@ -354,7 +357,10 @@ HEADERS += folding.hh \
     dictserver.hh \
     helpwindow.hh \
     slob.hh \
-    ripemd.hh
+    ripemd.hh \
+    WordBook/WordBook.h \
+    WordBook/WBookDialog.h \
+    WordBook/QTableLineEditItem.h
 
 FORMS += groups.ui \
     dictgroupwidget.ui \
@@ -371,7 +377,8 @@ FORMS += groups.ui \
     dictinfo.ui \
     dictheadwords.ui \
     authentication.ui \
-    fulltextsearch.ui
+    fulltextsearch.ui \
+    WordBook/WBookDialog.ui
 
 SOURCES += folding.cc \
     main.cc \
@@ -478,7 +485,10 @@ SOURCES += folding.cc \
     dictserver.cc \
     helpwindow.cc \
     slob.cc \
-    ripemd.cc
+    ripemd.cc \
+    WordBook/WordBook.cpp \
+    WordBook/WBookDialog.cpp \
+    WordBook/QTableLineEditItem.cpp
 
 win32 {
     FORMS   += texttospeechsource.ui

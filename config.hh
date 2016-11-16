@@ -562,6 +562,7 @@ struct Class
   QString historyExportPath; // Path for export/import history
   QString resourceSavePath;  // Path to save images/audio
   QString articleSavePath;   // Path to save articles
+  QString wbookExportPath;   // Path for word book
 
   bool pinPopupWindow; // Last pin status
 
@@ -659,6 +660,13 @@ QString getPidFileName() throw( exError );
 
 /// Returns the filename of a history file which stores search history.
 QString getHistoryFileName() throw( exError );
+
+/// Returns the filename of the wordbook config file
+QString getWBHomeDir();
+QString getWbookFileName() throw( exError );
+
+// Return the word list file of each wordset
+QString getWbookSetName(QString name) throw( exError );
 
 /// Returns the user .css file name.
 QString getUserCssFileName() throw( exError );

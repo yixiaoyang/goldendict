@@ -30,6 +30,7 @@
 #include "dictheadwords.hh"
 #include "fulltextsearch.hh"
 #include "helpwindow.hh"
+#include "WordBook/WordBook.h"
 
 #ifdef HAVE_X11
 #include <fixx11h.h>
@@ -135,6 +136,9 @@ private:
   Config::Class & cfg;
   Config::Events configEvents;
   History history;
+  WordBook wbook;
+  bool wb_inWordStared;
+  QString wb_inWordLast;
   DictionaryBar dictionaryBar;
   vector< sptr< Dictionary::Class > > dictionaries;
   /// Here we store unmuted dictionaries when the dictionary bar is active
@@ -241,6 +245,11 @@ private:
 
   void showDictionaryHeadwords( QWidget * owner, Dictionary::Class * dict );
 
+
+  void wb_starAndAddWord(char star);
+  void wb_updateStar(char star);
+  void wb_load();
+  void wb_show(QString inword);
 private slots:
 
   void hotKeyActivated( int );
@@ -441,6 +450,29 @@ private slots:
 
   void showGDHelp();
   void hideGDHelp();
+
+  void on_actionAppendToWBook_triggered();
+
+  void on_pushButton_wbStar1_clicked();
+
+  void on_pushButton_wbStar2_clicked();
+
+  void on_pushButton_wbStar3_clicked();
+
+  void on_pushButton_wbStar4_clicked();
+
+  void on_pushButton_wbStar5_clicked();
+
+  void on_actionAdd_removeFromWBook_triggered();
+
+  void on_actionOpenWordBook_triggered();
+
+  void on_comboBox_wordbook_currentIndexChanged(const QString &arg1);
+
+  void on_pushButton_wbStar0_clicked();
+
+  void slot_wbWordlist_changeed();
+  void slot_wbScanpopup_show(QString word);
 
 signals:
   /// Set optional parts expand mode for all tabs
